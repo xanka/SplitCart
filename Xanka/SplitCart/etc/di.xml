@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Reference for extending DefaultItem -->
+    <preference for="Magento\Checkout\CustomerData\DefaultItem" type="Xanka\SplitCart\CustomerData\DefaultItem" sortOrder="10" />
+
+    <!--  Plugin for checkout success -->
+    <type name="Magento\Checkout\Controller\Onepage\Success">
+        <plugin name="xanka_splitcart_success" type="Xanka\SplitCart\Plugin\Checkout\Success" sortOrder="10"/>
+    </type>
+
+    <!-- Plugin for Quote management -->
+    <type name="Magento\Quote\Model\QuoteManagement">
+        <plugin name="xanka_splitcart_quote_management" type="Xanka\SplitCart\Plugin\Checkout\QuoteManagement" sortOrder="10"/>
+    </type>
+
+    <!-- Plugin for Default config Provider to filter checkout item -->
+    <type name="Magento\Checkout\Model\DefaultConfigProvider">
+        <plugin name="xanka_splitcart_default_config_provider" type="Xanka\SplitCart\Plugin\Checkout\DefaultConfigProvider" sortOrder="10"/>
+    </type>
+
+    <!-- Plugin for cart total Repository to calculate total for selected item only -->
+    <type name="Magento\Quote\Model\Cart\CartTotalRepository">
+        <plugin name="xanka_splitcart_cart_total_repository" type="Xanka\SplitCart\Plugin\Quote\CartTotalRepository" sortOrder="10"/>
+    </type>
+
+    <!-- Plugin for Cart Total Repository Interface (API call)-->
+    <type name="Magento\Quote\Api\CartTotalRepositoryInterface">
+        <plugin name="xanka_splitcart_total_cart_repository_plugin" type="Xanka\SplitCart\Plugin\Quote\Api\CartTotalRepository" sortOrder="10"/>
+    </type>
+
+    <!-- Plugin for Cart Total Repository Interface (Guest API call) -->
+    <type name="Magento\Quote\Api\GuestCartTotalRepositoryInterface">
+        <plugin name="xanka_splitcart_guest_total_cart_repository_plugin" type="Xanka\SplitCart\Plugin\Quote\Api\GuestCartTotalRepository" sortOrder="10"/>
+    </type>
+</config>
